@@ -13,7 +13,7 @@ Option Explicit
 ' Проверяет соответствие строки WhatMatch
 Function RegExpTest(TestIn As String, TestWhat As String, Optional IgnoreCase As Boolean = True) As Boolean
     Dim RE As RegExp
-    
+
     Set RE = New RegExp
     RE.Pattern = TestWhat
     RE.Global = False
@@ -22,13 +22,16 @@ Function RegExpTest(TestIn As String, TestWhat As String, Optional IgnoreCase As
 End Function
 
 ' Производит замену ReplaceWhat на ReplaceWith в ReplaceIn.
+Function RegExpSubstitute(ReplaceIn As String, _
+    ReplaceWhat As String, _
+    ReplaceWith As String, _
+    Optional IgnoreCase As Boolean = True, _
+    Optional Globally As Boolean = True) As String
+    Dim RE As Regexp
 
-Function RegExpSubstitute(ReplaceIn As String, ReplaceWhat As String, ReplaceWith As String, Optional IgnoreCase As Boolean = True) As String
-    Dim RE As RegExp
-    
     Set RE = New RegExp
     RE.Pattern = ReplaceWhat
-    RE.Global = True
+    RE.Global = Globally
     RE.IgnoreCase = IgnoreCase
     RegExpSubstitute = RE.Replace(ReplaceIn, ReplaceWith)
 End Function
@@ -45,7 +48,7 @@ Function RegExpFind(FindIn As String, FindWhat As String, Optional IgnoreCase As
     RE.Pattern = FindWhat
     RE.IgnoreCase = IgnoreCase
     RE.Global = True
-    
+
     Set allMatches = RE.Execute(FindIn)
     For Each aMatch In allMatches
         aResults.Add (aMatch.Value)
@@ -62,12 +65,12 @@ Function RegExpMatch(FindIn As String, FindWhat As String, Optional IgnoreCase A
     Dim aResults As New Collection
     Dim i As Integer
     Dim sName, sFragment As String
-    
+
     Set RE = New RegExp
     RE.Pattern = FindWhat
     RE.IgnoreCase = IgnoreCase
     RE.Global = True
-    
+
     For Each aMatch In RE.Execute(FindIn)
         If RE.test(aMatch.Value) Then
             i = 1
