@@ -1,6 +1,6 @@
 Attribute VB_Name = "RunProgramModule"
 
-' Требует ссылки на Microsoft Scripting Runtime
+' РўСЂРµР±СѓРµС‚ СЃСЃС‹Р»РєРё РЅР° Microsoft Scripting Runtime
 #If VBA7 Then
 Private Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As LongPtr)
 #Else
@@ -17,8 +17,8 @@ End Type
 
 Function RunProgram(sProgram As String, Optional sParams As String = "", _
     Optional sCurrentDir As String = "", Optional sStdIn As String = "") As RunResult
-    ' sProgram - допускается использование пробелов в пути и в имени файла
-    ' sParams - программист сам следит за разделением параметров пробелами (аналогично вызову из cmd.exe)
+    ' sProgram - РґРѕРїСѓСЃРєР°РµС‚СЃСЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РїСЂРѕР±РµР»РѕРІ РІ РїСѓС‚Рё Рё РІ РёРјРµРЅРё С„Р°Р№Р»Р°
+    ' sParams - РїСЂРѕРіСЂР°РјРјРёСЃС‚ СЃР°Рј СЃР»РµРґРёС‚ Р·Р° СЂР°Р·РґРµР»РµРЅРёРµРј РїР°СЂР°РјРµС‚СЂРѕРІ РїСЂРѕР±РµР»Р°РјРё (Р°РЅР°Р»РѕРіРёС‡РЅРѕ РІС‹Р·РѕРІСѓ РёР· cmd.exe)
 
     Dim oShell As Object
     Set oShell = CreateObject("WScript.Shell")
@@ -31,12 +31,12 @@ Function RunProgram(sProgram As String, Optional sParams As String = "", _
 
     Dim oExec As Object
     Set oExec = oShell.Exec(sCmd)
-    ' Если есть данные стандартного потока ввода, то передаём их программе
+    ' Р•СЃР»Рё РµСЃС‚СЊ РґР°РЅРЅС‹Рµ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РїРѕС‚РѕРєР° РІРІРѕРґР°, С‚Рѕ РїРµСЂРµРґР°С‘Рј РёС… РїСЂРѕРіСЂР°РјРјРµ
     If sStdIn <> "" And oExec.Status = 0 Then
         oExec.StdIn.WriteLine sStdIn
     End If
     oExec.StdIn.Close
-    ' Ожидаем окончания программы
+    ' РћР¶РёРґР°РµРј РѕРєРѕРЅС‡Р°РЅРёСЏ РїСЂРѕРіСЂР°РјРјС‹
     Do While oExec.Status <> 1
         Sleep 500
     Loop

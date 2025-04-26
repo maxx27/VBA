@@ -1,56 +1,56 @@
-Attribute VB_Name = "Даты"
+Attribute VB_Name = "Р”Р°С‚С‹"
 Option Explicit
-Function ЭтоВисокосныйГод(год As Integer) As Boolean
-    ЭтоВисокосныйГод = (год Mod 400) = 0 Or ((год Mod 4) = 0 And (год Mod 100) <> 0)
+Function Р­С‚РѕР’РёСЃРѕРєРѕСЃРЅС‹Р№Р“РѕРґ(РіРѕРґ As Integer) As Boolean
+    Р­С‚РѕР’РёСЃРѕРєРѕСЃРЅС‹Р№Р“РѕРґ = (РіРѕРґ Mod 400) = 0 Or ((РіРѕРґ Mod 4) = 0 And (РіРѕРґ Mod 100) <> 0)
 End Function
-Function НазваниеМесяцаВЧисло(месяц As String) As Integer
+Function РќР°Р·РІР°РЅРёРµРњРµСЃСЏС†Р°Р’Р§РёСЃР»Рѕ(РјРµСЃСЏС† As String) As Integer
     Dim n As Integer
-    Select Case месяц
-    Case "сентябрь"
+    Select Case РјРµСЃСЏС†
+    Case "СЃРµРЅС‚СЏР±СЂСЊ"
      n = 9
-    Case "октябрь"
+    Case "РѕРєС‚СЏР±СЂСЊ"
      n = 10
-    Case "ноябрь"
+    Case "РЅРѕСЏР±СЂСЊ"
      n = 11
-    Case "декабрь"
+    Case "РґРµРєР°Р±СЂСЊ"
      n = 12
-    Case "январь"
+    Case "СЏРЅРІР°СЂСЊ"
      n = 1
-    Case "февраль"
+    Case "С„РµРІСЂР°Р»СЊ"
      n = 2
-    Case "март"
+    Case "РјР°СЂС‚"
      n = 3
-    Case "апрель"
+    Case "Р°РїСЂРµР»СЊ"
      n = 4
-    Case "май"
+    Case "РјР°Р№"
      n = 5
-    Case "июнь"
+    Case "РёСЋРЅСЊ"
      n = 6
-    Case "июль"
+    Case "РёСЋР»СЊ"
      n = 7
-    Case "август"
+    Case "Р°РІРіСѓСЃС‚"
      n = 8
     End Select
-    НазваниеМесяцаВЧисло = n
+    РќР°Р·РІР°РЅРёРµРњРµСЃСЏС†Р°Р’Р§РёСЃР»Рѕ = n
 End Function
 
-Function СколькоДнейВМесяце(месяц As String, год As Integer) As Integer
+Function РЎРєРѕР»СЊРєРѕР”РЅРµР№Р’РњРµСЃСЏС†Рµ(РјРµСЃСЏС† As String, РіРѕРґ As Integer) As Integer
     Dim p As Integer
-    Dim месяцЧислом As Integer
-    месяцЧислом = НазваниеМесяцаВЧисло(месяц)
-    Select Case месяцЧислом
+    Dim РјРµСЃСЏС†Р§РёСЃР»РѕРј As Integer
+    РјРµСЃСЏС†Р§РёСЃР»РѕРј = РќР°Р·РІР°РЅРёРµРњРµСЃСЏС†Р°Р’Р§РёСЃР»Рѕ(РјРµСЃСЏС†)
+    Select Case РјРµСЃСЏС†Р§РёСЃР»РѕРј
     Case 4, 6, 9, 11
      p = 30
     Case 1, 3, 5, 7, 8, 10, 12
      p = 31
     Case 2
-     If ЭтоВисокосныйГод(год) Then
+     If Р­С‚РѕР’РёСЃРѕРєРѕСЃРЅС‹Р№Р“РѕРґ(РіРѕРґ) Then
      p = 29
      Else
      p = 28
      End If
     End Select
-    СколькоДнейВМесяце = p
+    РЎРєРѕР»СЊРєРѕР”РЅРµР№Р’РњРµСЃСЏС†Рµ = p
 End Function
 
 

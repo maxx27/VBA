@@ -1,21 +1,21 @@
 Attribute VB_Name = "Ref"
 
 '
-' Добавить ссылки
+' Р”РѕР±Р°РІРёС‚СЊ СЃСЃС‹Р»РєРё
 '
 
 Sub AddCrossrefToHeading()
     ' http://windowssecrets.com/forums/showthread.php/119370-Word-2003-VBA-tool-to-find-the-targets-of-cross-references-and-insert-them
     ' http://my.safaribooksonline.com/book/office-and-productivity-applications/0596004931/editing-power-tools/wordhks-chp-4-sect-18
         
-    ' Пропустить разделители в начале и в конце выделения
+    ' РџСЂРѕРїСѓСЃС‚РёС‚СЊ СЂР°Р·РґРµР»РёС‚РµР»Рё РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ РІС‹РґРµР»РµРЅРёСЏ
     Selection.MoveStartWhile " " & vbCr, Selection.Characters.Count
     Selection.MoveEndWhile " " & vbCr, -Selection.Characters.Count
     
-    ' Выход, если selection включает несколько абзацев
+    ' Р’С‹С…РѕРґ, РµСЃР»Рё selection РІРєР»СЋС‡Р°РµС‚ РЅРµСЃРєРѕР»СЊРєРѕ Р°Р±Р·Р°С†РµРІ
     If Selection.Range.Paragraphs.Count <> 1 Then Exit Sub
 
-    ' Искомый текст
+    ' РСЃРєРѕРјС‹Р№ С‚РµРєСЃС‚
     Dim text As String
     text = LCase(Selection.Range.text)
 
@@ -24,16 +24,16 @@ Sub AddCrossrefToHeading()
     Dim v As Variant
     For Each v In ActiveDocument.GetCrossReferenceItems(wdRefTypeHeading)
         If LCase(Trim(v)) = text Then
-            ' Вставить маркер
+            ' Р’СЃС‚Р°РІРёС‚СЊ РјР°СЂРєРµСЂ
             Selection.InsertAfter " - "
             Selection.Collapse wdCollapseEnd
             
-            ' Вставить ссылку (разные варианты берутся из типа WdReferenceKind)
-            ' Вставить текст заголовока
+            ' Р’СЃС‚Р°РІРёС‚СЊ СЃСЃС‹Р»РєСѓ (СЂР°Р·РЅС‹Рµ РІР°СЂРёР°РЅС‚С‹ Р±РµСЂСѓС‚СЃСЏ РёР· С‚РёРїР° WdReferenceKind)
+            ' Р’СЃС‚Р°РІРёС‚СЊ С‚РµРєСЃС‚ Р·Р°РіРѕР»РѕРІРѕРєР°
             Selection.InsertCrossReference wdRefTypeHeading, wdContentText, i, True
-            ' Вставить страницу
+            ' Р’СЃС‚Р°РІРёС‚СЊ СЃС‚СЂР°РЅРёС†Сѓ
             Selection.InsertCrossReference wdRefTypeHeading, wdPageNumber, i, True
-            ' Вставить 'выше/ниже'
+            ' Р’СЃС‚Р°РІРёС‚СЊ 'РІС‹С€Рµ/РЅРёР¶Рµ'
             Selection.InsertCrossReference wdRefTypeHeading, wdPosition, i, True
             
             Exit Sub
@@ -55,17 +55,17 @@ End Sub
 Sub AddLink(asHyper As Boolean)
     ' http://my.safaribooksonline.com/book/office-and-productivity-applications/0596004931/editing-power-tools/wordhks-chp-4-sect-18
    
-    ' Пропустить разделители в начале и в конце выделения
+    ' РџСЂРѕРїСѓСЃС‚РёС‚СЊ СЂР°Р·РґРµР»РёС‚РµР»Рё РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ РІС‹РґРµР»РµРЅРёСЏ
     Selection.MoveStartWhile " " & vbCr, Selection.Characters.Count
     Selection.MoveEndWhile " " & vbCr, -Selection.Characters.Count
     
-    ' Выход, если selection включает несколько абзацев
+    ' Р’С‹С…РѕРґ, РµСЃР»Рё selection РІРєР»СЋС‡Р°РµС‚ РЅРµСЃРєРѕР»СЊРєРѕ Р°Р±Р·Р°С†РµРІ
     If Selection.Range.Paragraphs.Count <> 1 Then Exit Sub
     
     Dim paraIndex As Long
     paraIndex = GetParagraphIndex(Selection.Range.Paragraphs.First)
     
-    ' Искомый текст
+    ' РСЃРєРѕРјС‹Р№ С‚РµРєСЃС‚
     Dim text As String
     text = Selection.Range.text
     Dim textLcase As String
@@ -73,7 +73,7 @@ Sub AddLink(asHyper As Boolean)
 
     Dim para As Paragraph
     For Each para In ActiveDocument.Paragraphs
-        ' Пропустить разделители в начале и в конце выделения абзаца
+        ' РџСЂРѕРїСѓСЃС‚РёС‚СЊ СЂР°Р·РґРµР»РёС‚РµР»Рё РІ РЅР°С‡Р°Р»Рµ Рё РІ РєРѕРЅС†Рµ РІС‹РґРµР»РµРЅРёСЏ Р°Р±Р·Р°С†Р°
         Dim r As Range
         Set r = para.Range
         r.MoveStartWhile " " & vbCr, r.Characters.Count
@@ -84,17 +84,17 @@ Sub AddLink(asHyper As Boolean)
                 Exit Sub
             End If
 
-            ' Вставить маркер
+            ' Р’СЃС‚Р°РІРёС‚СЊ РјР°СЂРєРµСЂ
             Selection.InsertAfter " "
             Selection.Collapse wdCollapseEnd
             
-            ' Вставить ссылку
+            ' Р’СЃС‚Р°РІРёС‚СЊ СЃСЃС‹Р»РєСѓ
             If asHyper Then
-                ' 1) как гиперссылку
+                ' 1) РєР°Рє РіРёРїРµСЂСЃСЃС‹Р»РєСѓ
                 ActiveDocument.Hyperlinks.Add Selection.Range, "", GetOrSetCrossrefBookmark(para), "", text
             Else
-                ' 2) как перекрёстную ссылку
-                ' HERE: Имена параметров обязательны!
+                ' 2) РєР°Рє РїРµСЂРµРєСЂС‘СЃС‚РЅСѓСЋ СЃСЃС‹Р»РєСѓ
+                ' HERE: РРјРµРЅР° РїР°СЂР°РјРµС‚СЂРѕРІ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹!
                 Selection.InsertCrossReference _
                     ReferenceKind:=wdContentText, _
                     ReferenceItem:=GetOrSetCrossrefBookmark(para), _
@@ -120,7 +120,7 @@ Function GetOrSetCrossrefBookmark(para As Paragraph) As Bookmark
     If para.Range.bookmarks.Count <> 0 Then
         Dim i As Long
         For i = 1 To para.Range.bookmarks.Count
-            ' проверяем по префиксу, чтобы среди всех закладок на этот абзац была именно нами созданная
+            ' РїСЂРѕРІРµСЂСЏРµРј РїРѕ РїСЂРµС„РёРєСЃСѓ, С‡С‚РѕР±С‹ СЃСЂРµРґРё РІСЃРµС… Р·Р°РєР»Р°РґРѕРє РЅР° СЌС‚РѕС‚ Р°Р±Р·Р°С† Р±С‹Р»Р° РёРјРµРЅРЅРѕ РЅР°РјРё СЃРѕР·РґР°РЅРЅР°СЏ
             If InStr(1, para.Range.bookmarks(i).Name, BookmarkPrefix) Then
                 Set GetOrSetCrossrefBookmark = para.Range.bookmarks(i)
                 Exit Function
@@ -128,16 +128,16 @@ Function GetOrSetCrossrefBookmark(para As Paragraph) As Bookmark
         Next
     End If
     
-    ' пропустить с конца символ перевода строки
+    ' РїСЂРѕРїСѓСЃС‚РёС‚СЊ СЃ РєРѕРЅС†Р° СЃРёРјРІРѕР» РїРµСЂРµРІРѕРґР° СЃС‚СЂРѕРєРё
     Dim rng As Range
     Set rng = para.Range
     rng.MoveEnd wdCharacter, -1
 
-    ' закладки не было, создать имя для новой
+    ' Р·Р°РєР»Р°РґРєРё РЅРµ Р±С‹Р»Рѕ, СЃРѕР·РґР°С‚СЊ РёРјСЏ РґР»СЏ РЅРѕРІРѕР№
     Dim sBookmarkName As String
     sBookmarkName = BookmarkPrefix & ConvertStringRefBookmarkName(rng.text)
 
-    ' проверить на повтор имени закладки (могла быть создана ранее)
+    ' РїСЂРѕРІРµСЂРёС‚СЊ РЅР° РїРѕРІС‚РѕСЂ РёРјРµРЅРё Р·Р°РєР»Р°РґРєРё (РјРѕРіР»Р° Р±С‹С‚СЊ СЃРѕР·РґР°РЅР° СЂР°РЅРµРµ)
     Dim iSuffix As Integer, sSuffix As String
     iSuffix = 0
     sSuffix = ""
@@ -160,7 +160,7 @@ Function RemoveInvalidBookmarkCharsFromString(ByVal str As String) As String
     Dim i As Integer
     For i = 0 To 255
         Select Case i
-            ' оставляем символы "192 To 255" (они соответствуют кириллице)
+            ' РѕСЃС‚Р°РІР»СЏРµРј СЃРёРјРІРѕР»С‹ "192 To 255" (РѕРЅРё СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‚ РєРёСЂРёР»Р»РёС†Рµ)
             Case 0 To 31, 33 To 47, 58 To 64, 91 To 96, 123 To 191
                 str = Replace(str, Chr(i), vbNullString)
         End Select
@@ -169,7 +169,7 @@ Function RemoveInvalidBookmarkCharsFromString(ByVal str As String) As String
 End Function
 
 '
-' Переименовать закладки
+' РџРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ Р·Р°РєР»Р°РґРєРё
 '
 
 Sub RenameBookmarks()
@@ -178,14 +178,14 @@ Sub RenameBookmarks()
     ' https://groups.google.com/forum/#!topic/microsoft.public.word.vba.general/1nW_TNO3gnw
     ' http://support.microsoft.com/kb/247507
     
-    ' На самом деле переименовать закладку нельзя!
-    ' Можно создать другую с тем же диапазоном и удалить старую.
-    ' Перед удалением обновить все ссылки со старой закладки на новую.
-    ' Удаление и добавление меняет элементы в конце коллекции
-    ' Поэтому перебор элементов коллекции следует делать в обратном порядке.
+    ' РќР° СЃР°РјРѕРј РґРµР»Рµ РїРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ Р·Р°РєР»Р°РґРєСѓ РЅРµР»СЊР·СЏ!
+    ' РњРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ РґСЂСѓРіСѓСЋ СЃ С‚РµРј Р¶Рµ РґРёР°РїР°Р·РѕРЅРѕРј Рё СѓРґР°Р»РёС‚СЊ СЃС‚Р°СЂСѓСЋ.
+    ' РџРµСЂРµРґ СѓРґР°Р»РµРЅРёРµРј РѕР±РЅРѕРІРёС‚СЊ РІСЃРµ СЃСЃС‹Р»РєРё СЃРѕ СЃС‚Р°СЂРѕР№ Р·Р°РєР»Р°РґРєРё РЅР° РЅРѕРІСѓСЋ.
+    ' РЈРґР°Р»РµРЅРёРµ Рё РґРѕР±Р°РІР»РµРЅРёРµ РјРµРЅСЏРµС‚ СЌР»РµРјРµРЅС‚С‹ РІ РєРѕРЅС†Рµ РєРѕР»Р»РµРєС†РёРё
+    ' РџРѕСЌС‚РѕРјСѓ РїРµСЂРµР±РѕСЂ СЌР»РµРјРµРЅС‚РѕРІ РєРѕР»Р»РµРєС†РёРё СЃР»РµРґСѓРµС‚ РґРµР»Р°С‚СЊ РІ РѕР±СЂР°С‚РЅРѕРј РїРѕСЂСЏРґРєРµ.
     Dim i As Long
     For i = ActiveDocument.bookmarks.Count To 1 Step -1
-        ' Переименовать каждую закладку
+        ' РџРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ РєР°Р¶РґСѓСЋ Р·Р°РєР»Р°РґРєСѓ
         Dim BookmarkOld As Bookmark
         Set BookmarkOld = ActiveDocument.bookmarks(i)
         Dim BookmarkNew As Bookmark
@@ -203,8 +203,8 @@ Sub UpdateHyperlinks(BookmarkOld As Bookmark, BookmarkNew As Bookmark)
         Dim hLink As Hyperlink
         Set hLink = ActiveDocument.Hyperlinks(i)
         If hLink.SubAddress = BookmarkOld Then
-            ' нельзя изменить HyperLink: hLink.SubAddress = BookmarkNew
-            ' но можно удалить и создать новую
+            ' РЅРµР»СЊР·СЏ РёР·РјРµРЅРёС‚СЊ HyperLink: hLink.SubAddress = BookmarkNew
+            ' РЅРѕ РјРѕР¶РЅРѕ СѓРґР°Р»РёС‚СЊ Рё СЃРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ
             Dim r As Range
             Set r = hLink.Range.Duplicate
             hLink.Delete
@@ -217,18 +217,18 @@ Sub UpdateCrossrefs(BookmarkOld As Bookmark, BookmarkNew As Bookmark)
     Dim f As Field
     For Each f In ActiveDocument.Fields
         If f.Type = wdFieldRef Or f.Type = wdFieldPageRef Then
-            ' возможное содержимое ссылки {REF _REF12344 \h }
+            ' РІРѕР·РјРѕР¶РЅРѕРµ СЃРѕРґРµСЂР¶РёРјРѕРµ СЃСЃС‹Р»РєРё {REF _REF12344 \h }
             Dim s As String
             s = LTrim(Replace(f.Code.text, "REF", ""))
-            ' выделить первое слово до пробела - это ссылка
+            ' РІС‹РґРµР»РёС‚СЊ РїРµСЂРІРѕРµ СЃР»РѕРІРѕ РґРѕ РїСЂРѕР±РµР»Р° - СЌС‚Рѕ СЃСЃС‹Р»РєР°
             Dim n As Long
             n = InStr(s, " ") - 1
             If n = -1 Then n = Len(s)
             Dim ref As String
             ref = Left(s, n)
             s = Replace(s, ref, "")
-            ' Можно использовать дополнительное условие ActiveDocument.bookmarks.Exists(s)
-            ' s хранит оставшиеся параметры ссылки (например, \h для гиперссылки и т.д.)
+            ' РњРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ СѓСЃР»РѕРІРёРµ ActiveDocument.bookmarks.Exists(s)
+            ' s С…СЂР°РЅРёС‚ РѕСЃС‚Р°РІС€РёРµСЃСЏ РїР°СЂР°РјРµС‚СЂС‹ СЃСЃС‹Р»РєРё (РЅР°РїСЂРёРјРµСЂ, \h РґР»СЏ РіРёРїРµСЂСЃСЃС‹Р»РєРё Рё С‚.Рґ.)
             f.Code.text = "REF " & BookmarkNew & s
             f.Update
         End If
@@ -236,7 +236,7 @@ Sub UpdateCrossrefs(BookmarkOld As Bookmark, BookmarkNew As Bookmark)
 End Sub
 
 Sub RemoveAllBookmarksInSelection()
-    ' Удаляет все закладки в выделенном фрагменте, но не ссылки на них
+    ' РЈРґР°Р»СЏРµС‚ РІСЃРµ Р·Р°РєР»Р°РґРєРё РІ РІС‹РґРµР»РµРЅРЅРѕРј С„СЂР°РіРјРµРЅС‚Рµ, РЅРѕ РЅРµ СЃСЃС‹Р»РєРё РЅР° РЅРёС…
 
     Dim b As Bookmark
     For Each b In Selection.Range.bookmarks

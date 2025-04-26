@@ -8,17 +8,17 @@ Private Declare Function GetShortPathName Lib "kernel32" _
 
 Public Function GetShortFileName(ByVal FullPath As String) As String
 
-    ' Взято с http://www.freevbcode.com/ShowCode.Asp?ID=506
-    ' Назначение: получить имя DOS (формат 8.3) для заданного длинного имени [FullPath]
-    ' Возвращает имя в формате 8.3 или "" в случае ошибки (такой файл не существует или другая причина)
-    ' Пример: Debug.Print GetShortFileName("C:\My Documents\My Very Long File Name.doc") возвращает
-    ' если файл существует, то в окне отладчика отобразиться "C:\MYDOCU~1\MYVERY~1.DOC"
+    ' Р’Р·СЏС‚Рѕ СЃ http://www.freevbcode.com/ShowCode.Asp?ID=506
+    ' РќР°Р·РЅР°С‡РµРЅРёРµ: РїРѕР»СѓС‡РёС‚СЊ РёРјСЏ DOS (С„РѕСЂРјР°С‚ 8.3) РґР»СЏ Р·Р°РґР°РЅРЅРѕРіРѕ РґР»РёРЅРЅРѕРіРѕ РёРјРµРЅРё [FullPath]
+    ' Р’РѕР·РІСЂР°С‰Р°РµС‚ РёРјСЏ РІ С„РѕСЂРјР°С‚Рµ 8.3 РёР»Рё "" РІ СЃР»СѓС‡Р°Рµ РѕС€РёР±РєРё (С‚Р°РєРѕР№ С„Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ РёР»Рё РґСЂСѓРіР°СЏ РїСЂРёС‡РёРЅР°)
+    ' РџСЂРёРјРµСЂ: Debug.Print GetShortFileName("C:\My Documents\My Very Long File Name.doc") РІРѕР·РІСЂР°С‰Р°РµС‚
+    ' РµСЃР»Рё С„Р°Р№Р» СЃСѓС‰РµСЃС‚РІСѓРµС‚, С‚Рѕ РІ РѕРєРЅРµ РѕС‚Р»Р°РґС‡РёРєР° РѕС‚РѕР±СЂР°Р·РёС‚СЊСЃСЏ "C:\MYDOCU~1\MYVERY~1.DOC"
 
     Dim lAns As Long
     Dim sAns As String
     Dim iLen As Integer
    
-    ' Функция не работает, если файл не существует
+    ' Р¤СѓРЅРєС†РёСЏ РЅРµ СЂР°Р±РѕС‚Р°РµС‚, РµСЃР»Рё С„Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
     If Dir(FullPath) = "" Then Exit Function
 
     sAns = Space(255)

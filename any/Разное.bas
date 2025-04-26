@@ -1,30 +1,30 @@
-Attribute VB_Name = "Разное"
+Attribute VB_Name = "Р Р°Р·РЅРѕРµ"
 Option Explicit
 
-Function ЭтоЧисло(Строка As String) As Boolean
-    Dim i, Длина As Integer
+Function Р­С‚РѕР§РёСЃР»Рѕ(РЎС‚СЂРѕРєР° As String) As Boolean
+    Dim i, Р”Р»РёРЅР° As Integer
     
-    If Строка = "" Then
-        ЭтоЧисло = False
+    If РЎС‚СЂРѕРєР° = "" Then
+        Р­С‚РѕР§РёСЃР»Рѕ = False
         Exit Function
     End If
     
-    Длина = Len(Строка)
-    For i = 1 To Длина
-        If Mid(Строка, i, 1) < "0" Or Mid(Строка, i, 1) > "9" Then
-            ЭтоЧисло = False
+    Р”Р»РёРЅР° = Len(РЎС‚СЂРѕРєР°)
+    For i = 1 To Р”Р»РёРЅР°
+        If Mid(РЎС‚СЂРѕРєР°, i, 1) < "0" Or Mid(РЎС‚СЂРѕРєР°, i, 1) > "9" Then
+            Р­С‚РѕР§РёСЃР»Рѕ = False
             Exit Function
         End If
     Next
     
-    ЭтоЧисло = True
+    Р­С‚РѕР§РёСЃР»Рѕ = True
 End Function
 
-Function МаксимумИзЦелых(Число1, Число2 As Integer) As Integer
-    If Число1 > Число2 Then
-        МаксимумИзЦелых = Число1
+Function РњР°РєСЃРёРјСѓРјРР·Р¦РµР»С‹С…(Р§РёСЃР»Рѕ1, Р§РёСЃР»Рѕ2 As Integer) As Integer
+    If Р§РёСЃР»Рѕ1 > Р§РёСЃР»Рѕ2 Then
+        РњР°РєСЃРёРјСѓРјРР·Р¦РµР»С‹С… = Р§РёСЃР»Рѕ1
     Else
-        МаксимумИзЦелых = Число2
+        РњР°РєСЃРёРјСѓРјРР·Р¦РµР»С‹С… = Р§РёСЃР»Рѕ2
     End If
 End Function
 

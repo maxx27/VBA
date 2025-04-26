@@ -1,16 +1,16 @@
-Attribute VB_Name = "РегулярныеВыражения"
+Attribute VB_Name = "Р РµРіСѓР»СЏСЂРЅС‹РµР’С‹СЂР°Р¶РµРЅРёСЏ"
 Option Explicit
 
-' Модуль содержит функции общего назначения, которые можно
-' использовать для упрощения кода в листах Excel и документах Word.
-' Требуется подключить Microsoft VBScript Regular Expression 1.0
-' (есть версия 5.5, но в чём отличие я не знаю)
-' P.S. Версия 5.5 менее распространена чем 1.0
+' РњРѕРґСѓР»СЊ СЃРѕРґРµСЂР¶РёС‚ С„СѓРЅРєС†РёРё РѕР±С‰РµРіРѕ РЅР°Р·РЅР°С‡РµРЅРёСЏ, РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РЅРѕ
+' РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РґР»СЏ СѓРїСЂРѕС‰РµРЅРёСЏ РєРѕРґР° РІ Р»РёСЃС‚Р°С… Excel Рё РґРѕРєСѓРјРµРЅС‚Р°С… Word.
+' РўСЂРµР±СѓРµС‚СЃСЏ РїРѕРґРєР»СЋС‡РёС‚СЊ Microsoft VBScript Regular Expression 1.0
+' (РµСЃС‚СЊ РІРµСЂСЃРёСЏ 5.5, РЅРѕ РІ С‡С‘Рј РѕС‚Р»РёС‡РёРµ СЏ РЅРµ Р·РЅР°СЋ)
+' P.S. Р’РµСЂСЃРёСЏ 5.5 РјРµРЅРµРµ СЂР°СЃРїСЂРѕСЃС‚СЂР°РЅРµРЅР° С‡РµРј 1.0
 
-' Функции для работы с регулярными выражениями взяты и доработаны с
+' Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ СЂРµРіСѓР»СЏСЂРЅС‹РјРё РІС‹СЂР°Р¶РµРЅРёСЏРјРё РІР·СЏС‚С‹ Рё РґРѕСЂР°Р±РѕС‚Р°РЅС‹ СЃ
 ' http://www.tmehta.com/regexp/add_code.htm
 
-' Проверяет соответствие строки WhatMatch
+' РџСЂРѕРІРµСЂСЏРµС‚ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ СЃС‚СЂРѕРєРё WhatMatch
 Function RegExpTest(TestIn As String, TestWhat As String, Optional IgnoreCase As Boolean = True) As Boolean
     Dim RE As RegExp
 
@@ -21,7 +21,7 @@ Function RegExpTest(TestIn As String, TestWhat As String, Optional IgnoreCase As
     RegExpTest = RE.test(TestIn)
 End Function
 
-' Производит замену ReplaceWhat на ReplaceWith в ReplaceIn.
+' РџСЂРѕРёР·РІРѕРґРёС‚ Р·Р°РјРµРЅСѓ ReplaceWhat РЅР° ReplaceWith РІ ReplaceIn.
 Function RegExpSubstitute(ReplaceIn As String, _
     ReplaceWhat As String, _
     ReplaceWith As String, _
@@ -36,8 +36,8 @@ Function RegExpSubstitute(ReplaceIn As String, _
     RegExpSubstitute = RE.Replace(ReplaceIn, ReplaceWith)
 End Function
 
-' Производит глобальный поиск по тексту.
-' Возвращает коллекцию строк совпадения
+' РџСЂРѕРёР·РІРѕРґРёС‚ РіР»РѕР±Р°Р»СЊРЅС‹Р№ РїРѕРёСЃРє РїРѕ С‚РµРєСЃС‚Сѓ.
+' Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»Р»РµРєС†РёСЋ СЃС‚СЂРѕРє СЃРѕРІРїР°РґРµРЅРёСЏ
 
 Function RegExpFind(FindIn As String, FindWhat As String, Optional IgnoreCase As Boolean = False) As Collection
     Dim RE As RegExp, allMatches As MatchCollection, aMatch As Match
@@ -56,9 +56,9 @@ Function RegExpFind(FindIn As String, FindWhat As String, Optional IgnoreCase As
     Set RegExpFind = aResults
 End Function
 
-' Производит поиск и возвращает найденное согласно заданным подвыражениям
-' (элементы заключенные в скобки).
-' Пример: RegExpMatch("123 asd 4567 asd 89", "(\d)(\d+)") = ['1', '23', '4', '567', '8', '9']
+' РџСЂРѕРёР·РІРѕРґРёС‚ РїРѕРёСЃРє Рё РІРѕР·РІСЂР°С‰Р°РµС‚ РЅР°Р№РґРµРЅРЅРѕРµ СЃРѕРіР»Р°СЃРЅРѕ Р·Р°РґР°РЅРЅС‹Рј РїРѕРґРІС‹СЂР°Р¶РµРЅРёСЏРј
+' (СЌР»РµРјРµРЅС‚С‹ Р·Р°РєР»СЋС‡РµРЅРЅС‹Рµ РІ СЃРєРѕР±РєРё).
+' РџСЂРёРјРµСЂ: RegExpMatch("123 asd 4567 asd 89", "(\d)(\d+)") = ['1', '23', '4', '567', '8', '9']
 
 Function RegExpMatch(FindIn As String, FindWhat As String, Optional IgnoreCase As Boolean = False) As Collection
     Dim RE As RegExp, aMatch As Match

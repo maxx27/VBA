@@ -1,3 +1,3 @@
 This a collection of VBA macros I use occasionally in Microsoft Office.
 
-Some filenames (utf8), comments and variable names (cp1251) are in Russian.
+Some filenames, comments and variable names are in Russian (utf8).

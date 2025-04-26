@@ -1,23 +1,23 @@
-Attribute VB_Name = "МодульОкругление"
+Attribute VB_Name = "РњРѕРґСѓР»СЊРћРєСЂСѓРіР»РµРЅРёРµ"
 Option Explicit
 
-Function Округлить(ByVal Число As Double, Optional ByVal ЧиселПослеТочки As Integer = 0) As Double
-    Округлить = Format(Abs(Число), "0." & Replace(Space(ЧиселПослеТочки), " ", "0")) * Sgn(Число)
+Function РћРєСЂСѓРіР»РёС‚СЊ(ByVal Р§РёСЃР»Рѕ As Double, Optional ByVal Р§РёСЃРµР»РџРѕСЃР»РµРўРѕС‡РєРё As Integer = 0) As Double
+    РћРєСЂСѓРіР»РёС‚СЊ = Format(Abs(Р§РёСЃР»Рѕ), "0." & Replace(Space(Р§РёСЃРµР»РџРѕСЃР»РµРўРѕС‡РєРё), " ", "0")) * Sgn(Р§РёСЃР»Рѕ)
 End Function
 
-Function ОкруглитьВверх(ByVal Число As Double, Optional ByVal ЧиселПослеТочки As Integer = 0) As Double
+Function РћРєСЂСѓРіР»РёС‚СЊР’РІРµСЂС…(ByVal Р§РёСЃР»Рѕ As Double, Optional ByVal Р§РёСЃРµР»РџРѕСЃР»РµРўРѕС‡РєРё As Integer = 0) As Double
     Dim s As Double
-    s = CDbl("0," & Replace(Space(ЧиселПослеТочки), " ", "0") & "5")
-    If Число = Округлить(Число, ЧиселПослеТочки) Then
-        ОкруглитьВверх = Число
+    s = CDbl("0," & Replace(Space(Р§РёСЃРµР»РџРѕСЃР»РµРўРѕС‡РєРё), " ", "0") & "5")
+    If Р§РёСЃР»Рѕ = РћРєСЂСѓРіР»РёС‚СЊ(Р§РёСЃР»Рѕ, Р§РёСЃРµР»РџРѕСЃР»РµРўРѕС‡РєРё) Then
+        РћРєСЂСѓРіР»РёС‚СЊР’РІРµСЂС… = Р§РёСЃР»Рѕ
     Else
-        ОкруглитьВверх = Округлить(Число + s, ЧиселПослеТочки)
+        РћРєСЂСѓРіР»РёС‚СЊР’РІРµСЂС… = РћРєСЂСѓРіР»РёС‚СЊ(Р§РёСЃР»Рѕ + s, Р§РёСЃРµР»РџРѕСЃР»РµРўРѕС‡РєРё)
     End If
 End Function
 
-Function ОкруглитьВниз(ByVal Число As Double, Optional ByVal ЧиселПослеТочки As Integer = 0) As Double
+Function РћРєСЂСѓРіР»РёС‚СЊР’РЅРёР·(ByVal Р§РёСЃР»Рѕ As Double, Optional ByVal Р§РёСЃРµР»РџРѕСЃР»РµРўРѕС‡РєРё As Integer = 0) As Double
     Dim s As Double
-    s = CDbl("0," & Replace(Space(ЧиселПослеТочки), " ", "0") & "5")
-    ОкруглитьВниз = Округлить(Abs(Число) - s, ЧиселПослеТочки) * Sgn(Число)
+    s = CDbl("0," & Replace(Space(Р§РёСЃРµР»РџРѕСЃР»РµРўРѕС‡РєРё), " ", "0") & "5")
+    РћРєСЂСѓРіР»РёС‚СЊР’РЅРёР· = РћРєСЂСѓРіР»РёС‚СЊ(Abs(Р§РёСЃР»Рѕ) - s, Р§РёСЃРµР»РџРѕСЃР»РµРўРѕС‡РєРё) * Sgn(Р§РёСЃР»Рѕ)
 End Function
 
